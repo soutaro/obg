@@ -1,0 +1,6 @@
+# Generated from lib/obg.rb with RBS::Inline
+
+module Obg
+  class Error < StandardError
+  end
+end
