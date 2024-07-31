@@ -1,0 +1,18 @@
+# Generated from lib/obg/references.rb with RBS::Inline
+
+use Obg::Graph::Vertex
+
+module Obg
+  class References
+    attr_reader graph: Graph
+
+    # @rbs (Graph) -> void
+    def initialize: (Graph) -> void
+
+    # @rbs (String, ?Integer, ?Set[String]) { (Vertex vertex, Integer level, bool loop) -> void } -> void
+    def each_reference_to: (String, ?Integer, ?Set[String]) { (Vertex vertex, Integer level, bool loop) -> void } -> void
+
+    # @rbs (String, ?Integer, ?Set[String]) { (Vertex vertex, Integer level, bool loop) -> void } -> void
+    def each_reference_from: (String, ?Integer, ?Set[String]) { (Vertex vertex, Integer level, bool loop) -> void } -> void
+  end
+end

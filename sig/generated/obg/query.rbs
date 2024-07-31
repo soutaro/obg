@@ -1,0 +1,32 @@
+# Generated from lib/obg/query.rb with RBS::Inline
+
+module Obg
+  class Query
+    class Q < Data
+      attr_reader class_name(): String
+
+      attr_reader file(): String?
+
+      attr_reader line(): Integer?
+
+      def self.new: (String class_name, String? file, Integer? line) -> instance
+                  | (class_name: String, file: String?, line: Integer?) -> instance
+    end
+
+    class Q
+      # @rbs (String) -> Q
+      def self.parse: (String) -> Q
+    end
+
+    attr_reader graph: Graph
+
+    # @rbs (Graph) -> void
+    def initialize: (Graph) -> void
+
+    # @rbs (Array[Q]) -> Array[Graph::Vertex]
+    def query: (Array[Q]) -> Array[Graph::Vertex]
+
+    # @rbs (Q, Graph::Vertex) -> bool
+    def test_query: (Q, Graph::Vertex) -> bool
+  end
+end

@@ -47,6 +47,7 @@ GEM
     parser (3.3.4.0)
       ast (~> 2.4.1)
       racc
+    pathname (0.3.0)
     prism (0.30.0)
     racc (1.8.1)
     rainbow (3.1.1)
@@ -84,8 +85,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json
   minitest (~> 5.16)
   obg!
+  pathname
   rake (~> 13.0)
   rbs-inline!
   steep (~> 1.8.0.dev)

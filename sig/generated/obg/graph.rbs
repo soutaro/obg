@@ -1,0 +1,72 @@
+# Generated from lib/obg/graph.rb with RBS::Inline
+
+module Obg
+  class Graph
+    class Root < Data
+      attr_reader type(): "ROOT"
+
+      attr_reader root(): String
+
+      attr_reader references(): Array[String]
+
+      def self.new: ("ROOT" type, String root, Array[String] references) -> instance
+                  | (type: "ROOT", root: String, references: Array[String]) -> instance
+    end
+
+    class Vertex < Data
+      attr_reader type(): String
+
+      attr_reader address(): String
+
+      attr_reader references(): Array[String]
+
+      attr_reader object(): untyped
+
+      attr_reader graph(): Graph
+
+      def self.new: (String type, String address, Array[String] references, untyped object, Graph graph) -> instance
+                  | (type: String, address: String, references: Array[String], object: untyped, graph: Graph) -> instance
+    end
+
+    class Vertex
+      def name: () -> String
+
+      def class_name: () -> String?
+
+      def file: () -> String?
+
+      def line: () -> Integer?
+
+      def location: () -> String?
+
+      def method: () -> String?
+
+      def to_s: () -> String
+    end
+
+    attr_reader roots: Array[Root]
+
+    attr_reader vertexes: Hash[String, Vertex]
+
+    # Set of references from objects
+    attr_reader refs_from: Hash[String, Set[String]]
+
+    # Set of references to objects
+    attr_reader refs_to: Hash[String, Set[String]]
+
+    def initialize: () -> void
+
+    # @rbs (Pathname) -> self
+    def load: (Pathname) -> self
+
+    # @rbs (String | Vertex) { (Vertex) -> void } -> void
+    #    | (String | Vertex) -> Enumerator[Vertex, void]
+    def each_reference_from: (String | Vertex) { (Vertex) -> void } -> void
+                           | (String | Vertex) -> Enumerator[Vertex, void]
+
+    # @rbs (String | Vertex) { (Vertex) -> void } -> void
+    #    | (String | Vertex) -> Enumerator[Vertex, void]
+    def each_reference_to: (String | Vertex) { (Vertex) -> void } -> void
+                         | (String | Vertex) -> Enumerator[Vertex, void]
+  end
+end

@@ -1,0 +1,12 @@
+# Generated from lib/obg/cli.rb with RBS::Inline
+
+module Obg
+  class CLI
+    attr_reader argv: Array[String]
+
+    # @rbs (Array[String]) -> void
+    def initialize: (Array[String]) -> void
+
+    def start: () -> Integer
+  end
+end

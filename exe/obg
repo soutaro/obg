@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
+
+require "obg"
+require "obg/cli"
+
+exit Obg::CLI.new(ARGV.dup).start()
