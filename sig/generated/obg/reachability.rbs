@@ -1,0 +1,15 @@
+# Generated from lib/obg/reachability.rb with RBS::Inline
+
+module Obg
+  class Reachability
+    attr_reader graph: Graph
+
+    # @rbs (Graph) -> void
+    def initialize: (Graph) -> void
+
+    def reachable_from_root: () -> Set[String]
+
+    # @rbs (String | Graph::Vertex, ?Set[String]) -> Set[String]
+    def reachable_from: (String | Graph::Vertex, ?Set[String]) -> Set[String]
+  end
+end

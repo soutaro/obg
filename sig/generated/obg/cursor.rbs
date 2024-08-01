@@ -22,9 +22,11 @@ module Obg
     # @rbs (Array[Integer]) -> Cursor
     def select: (Array[Integer]) -> Cursor
 
-    def up: () -> Cursor
+    # @rbs (Array[Integer]) -> Cursor
+    def up: (Array[Integer]) -> Cursor
 
-    def down: () -> Cursor
+    # @rbs (Array[Integer]) -> Cursor
+    def down: (Array[Integer]) -> Cursor
 
     # @rbs (Query::Q) -> Cursor
     def add: (Query::Q) -> Cursor

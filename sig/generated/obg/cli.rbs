@@ -20,13 +20,17 @@ module Obg
     end
 
     class UpCommand < Data
-      def self.new: () -> instance
-                  | () -> instance
+      attr_reader indexes(): Array[Integer]
+
+      def self.new: (Array[Integer] indexes) -> instance
+                  | (indexes: Array[Integer]) -> instance
     end
 
     class DownCommand < Data
-      def self.new: () -> instance
-                  | () -> instance
+      attr_reader indexes(): Array[Integer]
+
+      def self.new: (Array[Integer] indexes) -> instance
+                  | (indexes: Array[Integer]) -> instance
     end
 
     class SelectCommand < Data
@@ -48,7 +52,19 @@ module Obg
                   | (query: Query::Q) -> instance
     end
 
-    type command = LoadCommand | PopCommand | UpCommand | DownCommand | SelectCommand | SampleCommand | AddCommand
+    class ReachabilityCommand < Data
+      attr_reader query(): Query::Q
+
+      def self.new: (Query::Q query) -> instance
+                  | (query: Query::Q) -> instance
+    end
+
+    class ReachableCommand < Data
+      def self.new: () -> instance
+                  | () -> instance
+    end
+
+    type command = LoadCommand | PopCommand | UpCommand | DownCommand | SelectCommand | SampleCommand | AddCommand | ReachabilityCommand | ReachableCommand
 
     # @rbs (command, Cursor) -> Cursor?
     def process_command: (command, Cursor) -> Cursor?

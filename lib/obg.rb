@@ -7,6 +7,7 @@ require "obg/graph"
 require "obg/references"
 require "obg/query"
 require "obg/cursor"
+require "obg/reachability"
 
 module Obg
   class Error < StandardError; end

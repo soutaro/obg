@@ -40,17 +40,54 @@ module Obg
       Cursor.new(graph, vs, self)
     end
 
-    def up #: Cursor
-      vs = Set.new(vertexes).flat_map do |vertex|
-        graph.each_reference_to(vertex).to_a
+    # @rbs (Array[Integer]) -> Cursor
+    def up(indexes)
+      if indexes.empty?
+        vs = Set.new(vertexes).flat_map do |vertex|
+          graph.each_reference_to(vertex).to_a
+        end
+      else
+        vs = [] #: Array[Graph::Vertex]
+
+        group_by_location.each_with_index do |(location, group), i|
+          if indexes.include?(i)
+            group.each do |vertex|
+              graph.each_reference_to(vertex) do |v|
+                vs << v
+              end
+            end
+          else
+            vs.concat(group)
+          end
+        end
       end
+      vs = Set.new(vs).to_a
       Cursor.new(graph, vs, self)
     end
 
-    def down #: Cursor
-      vs = Set.new(vertexes).flat_map do |vertex|
-        graph.each_reference_from(vertex).to_a
+    # @rbs (Array[Integer]) -> Cursor
+    def down(indexes)
+      if indexes.empty?
+        vs = Set.new(vertexes).flat_map do |vertex|
+          graph.each_reference_from(vertex).to_a
+        end
+      else
+        vs = [] #: Array[Graph::Vertex]
+
+        group_by_location.each_with_index do |(location, group), i|
+          if indexes.include?(i)
+            group.each do |vertex|
+              graph.each_reference_from(vertex) do |v|
+                vs << v
+              end
+            end
+          else
+            vs.concat(group)
+          end
+        end
       end
+      
+      vs = Set.new(vs).to_a
       Cursor.new(graph, vs, self)
     end
 
