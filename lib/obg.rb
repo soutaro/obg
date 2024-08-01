@@ -6,6 +6,7 @@ require "json"
 require "obg/graph"
 require "obg/references"
 require "obg/query"
+require "obg/cursor"
 
 module Obg
   class Error < StandardError; end

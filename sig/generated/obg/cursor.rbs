@@ -1,0 +1,32 @@
+# Generated from lib/obg/cursor.rb with RBS::Inline
+
+module Obg
+  class Cursor
+    attr_reader graph: Graph
+
+    attr_reader vertexes: Array[Graph::Vertex]
+
+    attr_reader last_cursor: Cursor?
+
+    # @rbs (Graph, Array[Graph::Vertex], Cursor?) -> void
+    def initialize: (Graph, Array[Graph::Vertex], Cursor?) -> void
+
+    # @rbs () { (Graph::Vertex) -> void } -> void
+    #    | () -> Enumerator[Graph::Vertex, void]
+    def each_vertex: () { (Graph::Vertex) -> void } -> void
+                   | () -> Enumerator[Graph::Vertex, void]
+
+    # @rbs () -> Array[[String?, Array[Graph::Vertex]]]
+    def group_by_location: () -> Array[[ String?, Array[Graph::Vertex] ]]
+
+    # @rbs (Array[Integer]) -> Cursor
+    def select: (Array[Integer]) -> Cursor
+
+    def up: () -> Cursor
+
+    def down: () -> Cursor
+
+    # @rbs (Query::Q) -> Cursor
+    def add: (Query::Q) -> Cursor
+  end
+end

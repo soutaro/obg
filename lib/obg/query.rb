@@ -9,9 +9,12 @@ module Obg
     class Q
       # @rbs (String) -> Q
       def self.parse(string)
-        class_name, file, line = string.split(/@|:/)
-
+        class_name, rest = string.split(/@/)
         class_name or raise
+
+        if rest
+          file, line = rest.split(/:/)
+        end
 
         Q.new(class_name, file, line&.to_i)
       end
@@ -33,7 +36,17 @@ module Obg
 
     # @rbs (Q, Graph::Vertex) -> bool
     def test_query(q, vertex)
-      return false unless vertex.class_name == q.class_name
+      class_name = vertex.class_name or return false
+
+      if q.class_name.end_with?("*")
+        unless class_name.start_with?(q.class_name.delete_suffix("*"))
+          return false
+        end
+      else
+        unless class_name == q.class_name
+          return false
+        end
+      end
       if q.file
         return false unless vertex.file == q.file
       end

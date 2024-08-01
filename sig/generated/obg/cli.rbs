@@ -7,6 +7,54 @@ module Obg
     # @rbs (Array[String]) -> void
     def initialize: (Array[String]) -> void
 
+    class LoadCommand < Data
+      attr_reader queries(): Array[Query::Q]
+
+      def self.new: (Array[Query::Q] queries) -> instance
+                  | (queries: Array[Query::Q]) -> instance
+    end
+
+    class PopCommand < Data
+      def self.new: () -> instance
+                  | () -> instance
+    end
+
+    class UpCommand < Data
+      def self.new: () -> instance
+                  | () -> instance
+    end
+
+    class DownCommand < Data
+      def self.new: () -> instance
+                  | () -> instance
+    end
+
+    class SelectCommand < Data
+      attr_reader indexes(): Array[Integer]
+
+      def self.new: (Array[Integer] indexes) -> instance
+                  | (indexes: Array[Integer]) -> instance
+    end
+
+    class SampleCommand < Data
+      def self.new: () -> instance
+                  | () -> instance
+    end
+
+    class AddCommand < Data
+      attr_reader query(): Query::Q
+
+      def self.new: (Query::Q query) -> instance
+                  | (query: Query::Q) -> instance
+    end
+
+    type command = LoadCommand | PopCommand | UpCommand | DownCommand | SelectCommand | SampleCommand | AddCommand
+
+    # @rbs (command, Cursor) -> Cursor?
+    def process_command: (command, Cursor) -> Cursor?
+
+    def parse_command: (untyped string) -> command?
+
     def start: () -> Integer
   end
 end
